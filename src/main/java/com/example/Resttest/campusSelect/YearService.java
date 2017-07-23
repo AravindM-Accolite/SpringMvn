@@ -1,12 +1,9 @@
 package com.example.Resttest.campusSelect;
 
-import com.example.Resttest.campusSelect.model.CSYear;
+import com.example.Resttest.campusSelect.model.CSYearTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -15,21 +12,21 @@ public class YearService {
     @Autowired
     private YearDAO yearDAO;
 
-    public List<CSYear> getALLCSYears() {return yearDAO.getAllCSYears(); }
+    public List<CSYearTest> getALLCSYears() {return yearDAO.getAllCSYears(); }
 
-    public CSYear createCSYear(int fromYear) {
+    public CSYearTest createCSYear(int fromYear) {
         // get all existing years
-        List<CSYear> allYears = this.yearDAO.getAllCSYears();
+        List<CSYearTest> allYears = this.yearDAO.getAllCSYears();
 
         allYears.sort((o1, o2) -> Integer.compare(o2.getYear(), o1.getYear()));
 
         // find the latest new year to create
-        CSYear newYear = new CSYear();
+        CSYearTest newYear = new CSYearTest();
         newYear.setYear(allYears.get(0).getYear() + 1);
 
         // copy properties
-        CSYear fromCopyYear = new CSYear();
-        for (CSYear year : allYears) {
+        CSYearTest fromCopyYear = new CSYearTest();
+        for (CSYearTest year : allYears) {
             if (year.getYear() == fromYear) {
                 fromCopyYear = year;
             }
@@ -44,7 +41,7 @@ public class YearService {
     }
 
     public Object getCSYear(int year) {
-        CSYear createdYear = this.yearDAO.getCSYear(year);
+        CSYearTest createdYear = this.yearDAO.getCSYear(year);
         if(createdYear == null) {
             // year not found
             String error = "year not found";
@@ -64,7 +61,7 @@ public class YearService {
     }
 
     public Object updateYearWorkflow(int year, String updatedWF) {
-        CSYear updatedYear = this.yearDAO.updateWorkflow(year, updatedWF);
+        CSYearTest updatedYear = this.yearDAO.updateWorkflow(year, updatedWF);
         if(updatedYear == null) {
             // year not found
             String error = "year not found; workflow not updated";

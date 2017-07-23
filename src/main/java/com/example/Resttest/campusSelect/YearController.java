@@ -1,7 +1,6 @@
 package com.example.Resttest.campusSelect;
 
-import com.example.Resttest.campusSelect.model.CSYear;
-import com.sun.org.apache.regexp.internal.RE;
+import com.example.Resttest.campusSelect.model.CSYearTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,9 +22,9 @@ public class YearController {
         return "hello";
     }
 
-    // get list of CSYear
+    // get list of CSYearTest
     @RequestMapping(value = "/years", method = RequestMethod.GET)
-    public @ResponseBody List<CSYear> getCSYearList() {
+    public @ResponseBody List<CSYearTest> getCSYearList() {
      return this.yearService.getALLCSYears();
     }
 
@@ -38,7 +37,7 @@ public class YearController {
 
     @RequestMapping(value = "/create/year", method = RequestMethod.POST)
     // post a new year params: from year
-    public CSYear createCSYear(@RequestParam("fromYear") int fromYear) {
+    public CSYearTest createCSYear(@RequestParam("fromYear") int fromYear) {
         // get data from from year and populate in the new year and then store the year
         return this.yearService.createCSYear(fromYear);
     }
