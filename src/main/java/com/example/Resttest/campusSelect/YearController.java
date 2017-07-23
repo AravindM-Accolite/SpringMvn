@@ -1,10 +1,20 @@
 package com.example.Resttest.campusSelect;
 
-import com.example.Resttest.campusSelect.model.CSYearTest;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+
+import javax.ws.rs.core.MediaType;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.Resttest.campusSelect.model.CSYear;
+import com.example.Resttest.campusSelect.model.CSYearTest;
 
 @RestController
 @RequestMapping(value = "api/campuses")
@@ -23,8 +33,8 @@ public class YearController {
     }
 
     // get list of CSYearTest
-    @RequestMapping(value = "/years", method = RequestMethod.GET)
-    public @ResponseBody List<CSYearTest> getCSYearList() {
+    @RequestMapping(value = "/years", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON)
+    public @ResponseBody List<CSYear> getCSYearList() {
      return this.yearService.getALLCSYears();
     }
 

@@ -1,5 +1,6 @@
 package com.example.Resttest.campusSelect;
 
+import com.example.Resttest.campusSelect.model.CSYear;
 import com.example.Resttest.campusSelect.model.CSYearTest;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +16,7 @@ public class YearDAO {
     public java.sql.Connection getConnection(boolean autoCommit) throws SQLException, ClassNotFoundException{
         Class.forName("org.postgresql.Driver");
         java.sql.Connection connection = null;
-        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/AU","postgres", "postgres");
+        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/ezhire","postgres", "postgres");
         connection.setAutoCommit(autoCommit);
         return connection;
     }
@@ -33,18 +34,29 @@ public class YearDAO {
         years.add(y2);
     }
 
-    public List<CSYearTest> getAllCSYears() {
+    public ArrayList<CSYear> getAllCSYears() {
+        try {
+            java.sql.Connection connection = getConnection(true);
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(YearAPIQueries.GET_YEARS);
+            return Util.yearResultMapper(rs);
+            
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+          return new ArrayList<>();
+    }
+    
+    public ArrayList<CSYearTest> getAllCSYearsTest() {
         try {
             java.sql.Connection connection = getConnection(true);
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(YearAPIQueries.GET_ALL_YEAR);
-            while (rs.next()) {
-                System.out.print("connected " + rs.getString(1));
-            }
+            return new ArrayList<>();
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return years;
+          return new ArrayList<>();
     }
 
     public void createCSYear(CSYearTest newYear) {

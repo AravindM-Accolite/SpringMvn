@@ -1,10 +1,12 @@
 package com.example.Resttest.campusSelect;
 
-import com.example.Resttest.campusSelect.model.CSYearTest;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.example.Resttest.campusSelect.model.CSYear;
+import com.example.Resttest.campusSelect.model.CSYearTest;
 
 @Service
 public class YearService {
@@ -12,11 +14,11 @@ public class YearService {
     @Autowired
     private YearDAO yearDAO;
 
-    public List<CSYearTest> getALLCSYears() {return yearDAO.getAllCSYears(); }
+    public List<CSYear> getALLCSYears() {return yearDAO.getAllCSYears(); }
 
     public CSYearTest createCSYear(int fromYear) {
         // get all existing years
-        List<CSYearTest> allYears = this.yearDAO.getAllCSYears();
+        List<CSYearTest> allYears = this.yearDAO.getAllCSYearsTest();
 
         allYears.sort((o1, o2) -> Integer.compare(o2.getYear(), o1.getYear()));
 
