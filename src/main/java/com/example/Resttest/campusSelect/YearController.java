@@ -15,5 +15,8 @@ public class YearController {
         this.yearService = yearService;
     }
 
-
+    @RequestMapping(value = "/test")
+    public String getHello(){
+        return "hello";
+    }
 }
