@@ -105,6 +105,12 @@ INSERT INTO cs.status(
 
     --get workflow of year Note:in query ? is to be replaced by year 
     select yr.year,wf.id,wf.rid from cs.year as yr,cs.workflow as wf where yr.year=?,yr.workflow_id=wf.id;
+	
+	--get latest year from years
+	select year from cs.year order by year desc limit 1;
+	
+	--get all HRs from table employe
+	select * from cs.employe where cs.employe.role='HR';
     
 -- drop table rounds;
 
