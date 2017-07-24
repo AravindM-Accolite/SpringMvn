@@ -1,5 +1,6 @@
 package com.example.Resttest.campusSelect;
 
+import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -19,10 +20,16 @@ public class Util {
 				Workflow wf = new Workflow();
 				Employee emp = new Employee();
 				try {
+
 					wf.setId(rs.getInt("workflow_id"));
 
-					wf.setStages(Arrays.asList(rs.getArray("rid")));
+					ArrayList<Integer> inStages = new ArrayList<>();
+                    Array stagesArray = rs.getArray("rid");
+                    Integer[] stages = (Integer[]) stagesArray.getArray();
+                    inStages.addAll(Arrays.asList(stages));
+                    wf.setStages(inStages);
 
+                    yr.setId(rs.getInt("year"));
 					yr.setWorkflow(wf);
 
 					emp.setContant(rs.getString("contact_number"));
@@ -34,18 +41,13 @@ public class Util {
 					yr.setCampusOwner(emp);
 
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				years.add(yr);
-				
-
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return years;
-
 	}
 }

@@ -8,6 +8,8 @@ create schema cs;
 
 set schema 'cs';
 
+SET datestyle = dmy;
+
 create table Rounds(id integer primary key,type character varying(20),description character varying(500));
 
 create table Workflow(id integer primary key ,rid integer[]);

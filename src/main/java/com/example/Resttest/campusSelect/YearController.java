@@ -35,7 +35,8 @@ public class YearController {
     // get list of CSYearTest
     @RequestMapping(value = "/years", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON)
     public @ResponseBody List<CSYear> getCSYearList() {
-     return this.yearService.getALLCSYears();
+        System.out.print("result ärraylist " + this.yearService.getALLCSYears());
+        return this.yearService.getALLCSYears();
     }
 
     // get year by {ID}

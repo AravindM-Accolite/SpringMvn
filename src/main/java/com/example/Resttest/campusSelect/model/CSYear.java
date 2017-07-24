@@ -22,6 +22,9 @@ public class CSYear {
 	public void setCampusOwner(Employee campusOwner) {
 		this.campusOwner = campusOwner;
 	}
-    
-    
+
+    @Override
+    public String toString() {
+        return String.valueOf(id);
+    }
 }

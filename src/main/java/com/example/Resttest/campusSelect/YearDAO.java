@@ -16,7 +16,7 @@ public class YearDAO {
     public java.sql.Connection getConnection(boolean autoCommit) throws SQLException, ClassNotFoundException{
         Class.forName("org.postgresql.Driver");
         java.sql.Connection connection = null;
-        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/ezhire","postgres", "postgres");
+        connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/AU","postgres", "postgres");
         connection.setAutoCommit(autoCommit);
         return connection;
     }
@@ -40,7 +40,6 @@ public class YearDAO {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(YearAPIQueries.GET_YEARS);
             return Util.yearResultMapper(rs);
-            
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
