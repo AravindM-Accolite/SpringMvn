@@ -2,11 +2,11 @@
 
 
 \l ;
-\connect ezhire;
+\connect AU;
 
-create schema kk;
+create schema cs;
 
-set schema 'kk';
+set schema 'cs';
 
 create table Rounds(id integer primary key,type character varying(20),description character varying(500));
 
@@ -31,14 +31,14 @@ create table candidate(id integer primary key ,Name character varying(40),colleg
 
 
 
-insert into Rounds values (51,'Written kk','Writtem kk for 30 mins');
-insert into Rounds values (52,'MCQ kk','Online MCQ kk for 30 mins');
-insert into Rounds values (53,'Coding kk','Coding kk for 60 mins');
+insert into Rounds values (51,'Written test','Writtem test for 30 mins');
+insert into Rounds values (52,'MCQ test','Online MCQ test for 30 mins');
+insert into Rounds values (53,'Coding test','Coding test for 60 mins');
 insert into Rounds values (54,'Technical Interview','Technical Interview for 90 mins');
 insert into Rounds values(55,'HR Interview','HR interview for 20 mins');
 
 
-INSERT INTO kk.employe(
+INSERT INTO cs.employe(
 	id, name, role, email, contact_number)
 	VALUES (40,'Gen','HR','gen@accolite.com',9192631770),
     (41,'Parul','SU','parul@accolite.com',9192631772),
@@ -47,29 +47,29 @@ INSERT INTO kk.employe(
 
 
 
-  INSERT INTO kk.workflow(
+  INSERT INTO cs.workflow(
 	id, rid)
 	VALUES (71,'{51,52,53}'),(72,'{51,52,54}'),(73,'{52,53,54}');
 
-INSERT INTO kk.year(
+INSERT INTO cs.year(
 	year, workflow_id, campusowner)
 	VALUES (2015,71,40),(2016,73,42),(2017,72,40);
 
   
 
-INSERT INTO kk.status(
+INSERT INTO cs.status(
 	id, status)
 	VALUES (61,'Open'),(62,'Started'),(63,'Inprogress'),(64,'Closed'),(65,'Ready'),(66,'Eligible');
 
 
-    INSERT INTO kk.college(
+    INSERT INTO cs.college(
 	id, name, address, contact_person_name, contact_person_number, longitude, latitude)
 	VALUES (31,'DAV','Delhi','Sudhir','9192631780','40.96','78.98'),
     (32,'SJM','New Delhi','Harry','9192631782','42.96','80.98'),
     (33,'JNV','Pune','Lokesh','9192631784','75.96','78.98');
 
     
-    INSERT INTO kk.campus(
+    INSERT INTO cs.campus(
 	drive_id, year, college_id, workflow_id, drive_status, start_date, end_date, hr_id)
 	VALUES (11, 2015,31 , 71, 61, '30-04-2015', '30-04-2015', 40),
     (12, 2016,32, 73, 64, '30-04-2016', '5-05-2016', 41),
@@ -77,7 +77,7 @@ INSERT INTO kk.status(
     
 
 
-    INSERT INTO kk.candidate(
+    INSERT INTO cs.candidate(
 	id, name, college_id, email, contact_number, cgpa, drive_id, isreg,Branch,status)
 	VALUES (21,'Aravind',31, 'aravind@dav.com','7373738484','8.9',11,true,'comp',65),
     (22,'Aravind',31, 'aravind@dav.com','7373738485','8.9',11,true,'comp',65),
