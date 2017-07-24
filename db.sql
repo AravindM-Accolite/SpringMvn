@@ -8,8 +8,6 @@ create schema cs;
 
 set schema 'cs';
 
-SET datestyle = dmy;
-
 create table Rounds(id integer primary key,type character varying(20),description character varying(500));
 
 create table Workflow(id integer primary key ,rid integer[]);
@@ -73,8 +71,8 @@ INSERT INTO cs.status(
     
     INSERT INTO cs.campus(
 	drive_id, year, college_id, workflow_id, drive_status, start_date, end_date, hr_id)
-	VALUES (11, 2015,31 , 71, 61, '30-04-2015', '30-04-2015', 40),
-    (12, 2016,32, 73, 64, '30-04-2016', '5-05-2016', 41),
+	VALUES (11, 2015,31 , 71, 61, '30-04-2015-04-30', '30-04-2015-04-30', 40),
+    (12, 2016,32, 73, 64, '30-04-2016-04-30', '5-05-2016-05-', 41),
     (13, 2016,33, 72, 63, '15-07-2016', '15-06-2016', 40);
     
 
@@ -90,6 +88,23 @@ INSERT INTO cs.status(
     (27,'sujay',33, 'sujay@dav.com','7373738464','7.9',13,false,'comp',66),
     (28,'vinod',33, 'vinod@dav.com','7373738494','6.9',13,true,'it',66),
     (29,'akshay',33, 'akshay@dav.com','7373738404','8.9',13,true,'entc',66);
+	
+	
+	
+	
+	
+	
+	--get year by ids
+	select year from cs.year;
+	
+	-- get workflow of years
+	select * from year,workflow where year.workflow_id=workflow.id; 
+	
+	--get year info
+	select yr.year,yr.workflow_id,yr.campusowner,emp.name,emp.email,emp.contact_number,wf.rid from cs.year as yr,cs.employe as emp,cs.workflow as wf where yr.campusowner=emp.id and yr.workflow_id=wf.id;
+
+    --get workflow of year Note:in query ? is to be replaced by year 
+    select yr.year,wf.id,wf.rid from cs.year as yr,cs.workflow as wf where yr.year=?,yr.workflow_id=wf.id;
     
 -- drop table rounds;
 
