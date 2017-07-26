@@ -1,21 +1,44 @@
 package com.example.Resttest.campusSelect.model;
 
-public class CSYear {
-    private Integer id;
-    private Workflow workflow;
+public class CSYear{
+    private Integer year;
+	private Workflow curr_workflow;
+	private Workflow src_workflow;
     private Employee campusOwner;
-	public Integer getId() {
-		return id;
+    
+    
+    
+    
+    
+    
+	
+    
+    public Workflow getCurr_workflow() {
+		return this.curr_workflow;
 	}
-	public void setId(Integer id) {
-		this.id = id;
+
+	public void setCurr_workflow(Workflow curr_workflow) {
+		this.curr_workflow = curr_workflow;
 	}
-	public Workflow getWorkflow() {
-		return workflow;
+
+	public Workflow getSrc_workflow() {
+		return src_workflow;
 	}
-	public void setWorkflow(Workflow workflow) {
-		this.workflow = workflow;
+
+	public void setSrc_workflow(Workflow src_workflow) {
+		this.src_workflow = src_workflow;
 	}
+
+	public Integer getYear() {
+		return this.year;
+	}
+
+	public void setYear(Integer year) {
+		this.year = year;
+	}
+
+	
+	
 	public Employee getCampusOwner() {
 		return campusOwner;
 	}
@@ -25,6 +48,9 @@ public class CSYear {
 
     @Override
     public String toString() {
-        return String.valueOf(id);
+        return String.valueOf(year);
     }
+
+    
+ 
 }
