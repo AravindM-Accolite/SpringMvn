@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import com.example.Resttest.campusSelect.model.CSYear;
+import com.example.Resttest.campusSelect.model.Drive;
 import com.example.Resttest.campusSelect.model.Employee;
 import com.example.Resttest.campusSelect.model.Workflow;
 
@@ -49,5 +50,57 @@ public class Util {
 			e.printStackTrace();
 		}
 		return years;
+	}
+	
+	static ArrayList<Drive> AllDriveList(ResultSet rs){
+		
+		ArrayList<Drive> drives = new ArrayList<Drive>();
+		try{
+			while(rs.next()){
+				Drive dr = new Drive();
+			
+				
+				dr.setDrive_id(rs.getInt("drive_id"));
+				dr.setYear(rs.getInt("campus_year"));
+				dr.setWorkflow(rs.getInt("workflow_id"));
+				dr.setStatus(rs.getInt("drive_status"));
+				dr.setStartDate(rs.getString("start_date"));
+				dr.setEndDate(rs.getString("end_date"));
+				dr.setHr(rs.getInt("hr_id"));
+				
+				drives.add(dr);
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+		return drives;
+	}
+
+	static ArrayList<Drive> YearDriveList(ResultSet rs){
+		
+		ArrayList<Drive> drives = new ArrayList<Drive>();
+		try{
+			while(rs.next()){
+				Drive dr = new Drive();
+			
+				
+				dr.setDrive_id(rs.getInt("drive_id"));
+				dr.setYear(rs.getInt("campus_year"));
+				dr.setWorkflow(rs.getInt("workflow_id"));
+				dr.setStatus(rs.getInt("drive_status"));
+				dr.setStartDate(rs.getString("start_date"));
+				dr.setEndDate(rs.getString("end_date"));
+				dr.setHr(rs.getInt("hr_id"));
+				
+				drives.add(dr);
+			}
+		}
+
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		return drives;
 	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,8 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.Resttest.campusSelect.model.CSYear;
 import com.example.Resttest.campusSelect.model.CSYearTest;
+import com.example.Resttest.campusSelect.model.Candidates;
 
-@RestController
+@Controller
 @RequestMapping(value = "api/campuses")
 public class YearController {
 
@@ -64,6 +66,8 @@ public class YearController {
     public Object updateYearWorkflow(@PathVariable("year") int year, @RequestBody String updatedWF) {
         return this.yearService.updateYearWorkflow(year, updatedWF);
     }
+    
+    
 
     // get/ update year HR
 }

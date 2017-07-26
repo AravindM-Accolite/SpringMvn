@@ -2,6 +2,7 @@ package com.example.Resttest.campusSelect;
 
 import com.example.Resttest.campusSelect.model.CSYear;
 import com.example.Resttest.campusSelect.model.CSYearTest;
+
 import org.springframework.stereotype.Component;
 
 import java.sql.*;
@@ -45,6 +46,7 @@ public class YearDAO {
         }
           return new ArrayList<>();
     }
+    
     
     public ArrayList<CSYearTest> getAllCSYearsTest() {
         try {
