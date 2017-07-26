@@ -2,10 +2,7 @@ package com.example.Resttest.campusSelect;
 
 import java.util.List;
 
-import javax.ws.rs.core.MediaType;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,10 +12,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.Resttest.campusSelect.model.CSYear;
-import com.example.Resttest.campusSelect.model.CSYearTest;
-import com.example.Resttest.campusSelect.model.Candidates;
+import com.example.Resttest.campusSelect.model.Workflow;
 
-@Controller
+@RestController
 @RequestMapping(value = "api/campuses")
 public class YearController {
 
@@ -35,10 +31,13 @@ public class YearController {
     }
 
     // get list of CSYearTest
-    @RequestMapping(value = "/years", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON)
-    public @ResponseBody List<CSYear> getCSYearList() {
-        System.out.print("result ärraylist " + this.yearService.getALLCSYears());
-        return this.yearService.getALLCSYears();
+   
+    @RequestMapping(value = "/years", method = RequestMethod.GET)
+        public @ResponseBody  List<CSYear> getCSYearList() {
+       // System.out.print("result ärraylist " + this.yearService.getALLCSYears());
+    	 
+           return this.yearService.getALLCSYears();
+    	
     }
 
     // get year by {ID}
@@ -50,11 +49,23 @@ public class YearController {
 
     @RequestMapping(value = "/create/year", method = RequestMethod.POST)
     // post a new year params: from year
-    public CSYearTest createCSYear(@RequestParam("fromYear") int fromYear) {
+    public CSYear createCSYear(@RequestParam("fromYear") int fromYear)
+    {
         // get data from from year and populate in the new year and then store the year
+    		
         return this.yearService.createCSYear(fromYear);
+        
+        
+      }
+    
+    @RequestMapping(value = "/yearList", method = RequestMethod.GET)
+    public @ResponseBody Object getCSYear() {
+        return this.yearService.getCSYearList();
     }
 
+    
+    
+ 
     @RequestMapping(value = "/workflow/{year}")
     // get workflow of the year
     public Object getWorkflowOfYear(@PathVariable("year") int year) {
@@ -63,11 +74,9 @@ public class YearController {
 
     @RequestMapping(value = "/workflow/{year}", method = RequestMethod.PUT)
     // update workflow of the year
-    public Object updateYearWorkflow(@PathVariable("year") int year, @RequestBody String updatedWF) {
+    public Object updateYearWorkflow(@PathVariable("year") int year, @RequestBody Workflow updatedWF) {
         return this.yearService.updateYearWorkflow(year, updatedWF);
     }
-    
-    
 
     // get/ update year HR
 }
